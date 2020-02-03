@@ -16,13 +16,12 @@ client.connect(PORT, HOST, function() {
 client.on('data', function(data) {
   if (data.toString() == 'close') {
     console.log('Connection Closed')
-    //
     client.destroy(); // kill Client หลังจากปิด Connection
     readline.close(); // ปิดการทำงานของ module readline
 
   } else
   //แสดง output ที่ Client ส่งไป
-    readline.question(data, function() {
+    readline.question(data, function(data) {
       client.write(data);
     })
 })
